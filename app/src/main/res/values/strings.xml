@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">KioskMode</string>
+    <string name="main_button">hiddenBreakoutButton</string>
+</resources>

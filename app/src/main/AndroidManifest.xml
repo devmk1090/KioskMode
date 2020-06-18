@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.devkproject.kioskmode">
+
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+
+    <application
+        android:name=".AppContext"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+<!--        부팅과 동시에 앱이 시작되어야 하고 기기를 켜진 상태로 유지하기 위해-->
+<!--        broadcast receiver 를 사용한다-->
+        <receiver android:name=".BootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+<!--android:exported-->
+<!--이 요소는 다른 애플리케이션의 구성요소로 액티비티를 시작할 수 있는지 설정합니다. 할 수 있으면 "true", 할 수 없으면 "false"입니다.
+"false"인 경우, 해당 액티비티는 같은 애플리케이션의 구성요소 또는 사용자 ID가 같은 애플리케이션으로만 시작할 수 있습니다.
+인텐트 필터를 사용하는 경우 이 요소를 "false"로 설정하면 안 됩니다.
+이렇게 설정하고 앱이 액티비티를 호출하려 하면 시스템이 ActivityNotFoundException 을 발생시킵니다.
+대신 이에 대한 인텐트 필터를 설정하지 않아 다른 앱이 이 액티비티를 호출하지 못하게 방지해야 합니다.-->
+        <service android:name=".KioskService" android:exported="false"/>
+    </application>
+
+</manifest>
